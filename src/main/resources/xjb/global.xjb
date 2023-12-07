@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxb:bindings version="3.0" xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    jaxb:extensionBindingPrefixes="xjc">
+    <jaxb:globalBindings>
+        <xjc:javaType name="java.time.LocalDate" xmlType="xs:date" adapter="com.roamsys.sepa.pain.jaxb.converter.LocalDateAdapter" />
+        <xjc:javaType name="java.time.OffsetDateTime" xmlType="xs:dateTime" adapter="com.roamsys.sepa.pain.jaxb.converter.OffsetDateTimeAdapter" />
+    </jaxb:globalBindings>
+</jaxb:bindings>
