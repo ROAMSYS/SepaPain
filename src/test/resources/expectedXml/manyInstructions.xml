@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Document xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001.03.xsd" xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <CstmrCdtTrfInitn>
+        <GrpHdr>
+            <MsgId>COBADEFFXXX0020230716110719</MsgId>
+            <CreDtTm>2023-11-01T12:30:15.8+01:00</CreDtTm>
+            <NbOfTxs>3</NbOfTxs>
+            <CtrlSum>82.59</CtrlSum>
+            <InitgPty>
+                <Nm>Company 1 S.A.</Nm>
+            </InitgPty>
+        </GrpHdr>
+        <PmtInf>
+            <PmtInfId>ABCDEFG</PmtInfId>
+            <PmtMtd>TRF</PmtMtd>
+            <BtchBookg>true</BtchBookg>
+            <NbOfTxs>1</NbOfTxs>
+            <CtrlSum>27.53</CtrlSum>
+            <PmtTpInf>
+                <SvcLvl>
+                    <Cd>SEPA</Cd>
+                </SvcLvl>
+            </PmtTpInf>
+            <ReqdExctnDt>2023-11-15</ReqdExctnDt>
+            <Dbtr>
+                <Nm>Roamsys S.A.</Nm>
+            </Dbtr>
+            <DbtrAcct>
+                <Id>
+                    <IBAN>DE02100100100006820101</IBAN>
+                </Id>
+            </DbtrAcct>
+            <DbtrAgt>
+                <FinInstnId>
+                    <BIC>COBADEFFXXX</BIC>
+                </FinInstnId>
+            </DbtrAgt>
+            <ChrgBr>SLEV</ChrgBr>
+            <CdtTrfTxInf>
+                <PmtId>
+                    <EndToEndId>NOTPROVIDED</EndToEndId>
+                </PmtId>
+                <Amt>
+                    <InstdAmt Ccy="EUR">27.53</InstdAmt>
+                </Amt>
+                <CdtrAgt>
+                    <FinInstnId>
+                        <BIC>INGBNL2AXXX</BIC>
+                    </FinInstnId>
+                </CdtrAgt>
+                <Cdtr>
+                    <Nm>John Doe</Nm>
+                </Cdtr>
+                <CdtrAcct>
+                    <Id>
+                        <IBAN>NL50INGB4362244417</IBAN>
+                    </Id>
+                </CdtrAcct>
+                <RmtInf>
+                    <Ustrd>Nov 2023</Ustrd>
+                </RmtInf>
+            </CdtTrfTxInf>
+        </PmtInf>
+        <PmtInf>
+            <PmtInfId>12345678</PmtInfId>
+            <PmtMtd>TRF</PmtMtd>
+            <BtchBookg>true</BtchBookg>
+            <NbOfTxs>1</NbOfTxs>
+            <CtrlSum>27.53</CtrlSum>
+            <PmtTpInf>
+                <SvcLvl>
+                    <Cd>SEPA</Cd>
+                </SvcLvl>
+            </PmtTpInf>
+            <ReqdExctnDt>2023-12-15</ReqdExctnDt>
+            <Dbtr>
+                <Nm>Roamsys S.A.</Nm>
+            </Dbtr>
+            <DbtrAcct>
+                <Id>
+                    <IBAN>DE02100100100006820101</IBAN>
+                </Id>
+            </DbtrAcct>
+            <DbtrAgt>
+                <FinInstnId>
+                    <BIC>COBADEFFXXX</BIC>
+                </FinInstnId>
+            </DbtrAgt>
+            <ChrgBr>SLEV</ChrgBr>
+            <CdtTrfTxInf>
+                <PmtId>
+                    <EndToEndId>NOTPROVIDED</EndToEndId>
+                </PmtId>
+                <Amt>
+                    <InstdAmt Ccy="EUR">27.53</InstdAmt>
+                </Amt>
+                <CdtrAgt>
+                    <FinInstnId>
+                        <BIC>INGBNL2AXXX</BIC>
+                    </FinInstnId>
+                </CdtrAgt>
+                <Cdtr>
+                    <Nm>John Doe</Nm>
+                </Cdtr>
+                <CdtrAcct>
+                    <Id>
+                        <IBAN>NL50INGB4362244417</IBAN>
+                    </Id>
+                </CdtrAcct>
+                <RmtInf>
+                    <Ustrd>Dec 2023</Ustrd>
+                </RmtInf>
+            </CdtTrfTxInf>
+        </PmtInf>
+        <PmtInf>
+            <PmtInfId>12345678</PmtInfId>
+            <PmtMtd>TRF</PmtMtd>
+            <BtchBookg>true</BtchBookg>
+            <NbOfTxs>1</NbOfTxs>
+            <CtrlSum>27.53</CtrlSum>
+            <PmtTpInf>
+                <SvcLvl>
+                    <Cd>SEPA</Cd>
+                </SvcLvl>
+            </PmtTpInf>
+            <ReqdExctnDt>2024-01-15</ReqdExctnDt>
+            <Dbtr>
+                <Nm>Roamsys S.A.</Nm>
+            </Dbtr>
+            <DbtrAcct>
+                <Id>
+                    <IBAN>DE02100100100006820101</IBAN>
+                </Id>
+            </DbtrAcct>
+            <DbtrAgt>
+                <FinInstnId>
+                    <BIC>COBADEFFXXX</BIC>
+                </FinInstnId>
+            </DbtrAgt>
+            <ChrgBr>SLEV</ChrgBr>
+            <CdtTrfTxInf>
+                <PmtId>
+                    <EndToEndId>NOTPROVIDED</EndToEndId>
+                </PmtId>
+                <Amt>
+                    <InstdAmt Ccy="EUR">27.53</InstdAmt>
+                </Amt>
+                <CdtrAgt>
+                    <FinInstnId>
+                        <BIC>INGBNL2AXXX</BIC>
+                    </FinInstnId>
+                </CdtrAgt>
+                <Cdtr>
+                    <Nm>John Doe</Nm>
+                </Cdtr>
+                <CdtrAcct>
+                    <Id>
+                        <IBAN>NL50INGB4362244417</IBAN>
+                    </Id>
+                </CdtrAcct>
+                <RmtInf>
+                    <Ustrd>Jan 2024</Ustrd>
+                </RmtInf>
+            </CdtTrfTxInf>
+        </PmtInf>
+    </CstmrCdtTrfInitn>
+</Document>
