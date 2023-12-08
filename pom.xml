@@ -83,6 +83,13 @@
                 </configuration>
             </plugin>
         </plugins>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>3.3.3</version>
+            </extension>
+        </extensions>
     </build>
     <licenses>
         <license>
