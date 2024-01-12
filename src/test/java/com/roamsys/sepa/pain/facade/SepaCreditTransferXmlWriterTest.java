@@ -15,9 +15,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test of {@link SepaCreditTransferXmllWriter}.
+ * Test of {@link SepaCreditTransferXmlWriter}.
  */
-class SepaCreditTransferXmllWriterTest {
+class SepaCreditTransferXmlWriterTest {
 
     private final Clock clock = Clock.fixed(Instant.parse("2023-11-01T12:30:15.8+01:00"), ZoneId.of("CET"));
     @Test
@@ -35,7 +35,17 @@ class SepaCreditTransferXmllWriterTest {
     }
 
     @Test
-    void tesManyInstructions() throws IOException, URISyntaxException {
+    void testAccountHolderOptional() throws IOException, URISyntaxException {
+        final var debtor = new SepaBankAccount(null, "COBADEFFXXX", "DE02100100100006820101");
+        final var creditor1 = new SepaBankAccount("", "INGBNL2AXXX", "NL50INGB4362244417");
+        final var paymentInstruction = new SepaPaymentInstruction("ABCDEFG", debtor, LocalDate.of(2023, 11, 15),
+                List.of(new SepaTransactionInfo(creditor1, new BigDecimal("27.53"), "Contract 1 - Nov 2023")));
+        final var sepaCreditTransfer = new SepaCreditTransfer("COBADEFFXXX0020230716110719", "Roamsys S.A.", List.of(paymentInstruction));
+        assertXmlEquals("accountHolderOptional.xml", sepaCreditTransfer);
+    }
+
+    @Test
+    void testManyInstructions() throws IOException, URISyntaxException {
         final var debtor = new SepaBankAccount("Roamsys S.A.", "COBADEFFXXX", "DE02100100100006820101");
         final var creditor = new SepaBankAccount("John Doe", "INGBNL2AXXX", "NL50INGB4362244417");
         final var instruction1 = new SepaPaymentInstruction("ABCDEFG", debtor, LocalDate.of(2023, 11, 15),
@@ -50,7 +60,7 @@ class SepaCreditTransferXmllWriterTest {
 
     private void assertXmlEquals(final String fileName, final SepaCreditTransfer sepaCreditTransfer) throws IOException, URISyntaxException {
         final StringWriter writer = new StringWriter();
-        new SepaCreditTransferXmllWriter(clock).write(sepaCreditTransfer, writer);
+        new SepaCreditTransferXmlWriter(clock).write(sepaCreditTransfer, writer);
         final String expected = Files.readString(Paths.get(getClass().getClassLoader().getResource("expectedXml/" + fileName).toURI()));
         assertEquals(expected, writer.toString());
     }
