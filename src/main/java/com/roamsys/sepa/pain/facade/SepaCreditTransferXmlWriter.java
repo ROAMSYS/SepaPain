@@ -32,7 +32,7 @@ import java.time.OffsetDateTime;
  *
  * @author AndreasK
  */
-public class SepaCreditTransferXmllWriter {
+public class SepaCreditTransferXmlWriter {
 
     private static final String EURO_CURRENCY = "EUR";
     private static final String SCHEMA_LOCATION = "urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001.03.xsd";
@@ -47,11 +47,11 @@ public class SepaCreditTransferXmllWriter {
 
     private final Clock clock;
 
-    public SepaCreditTransferXmllWriter() {
+    public SepaCreditTransferXmlWriter() {
         this(Clock.systemDefaultZone());
     }
 
-    public SepaCreditTransferXmllWriter(final Clock clock) {
+    public SepaCreditTransferXmlWriter(final Clock clock) {
         this.clock = clock;
     }
 
@@ -99,7 +99,9 @@ public class SepaCreditTransferXmllWriter {
 
     private PartyIdentification32 createPartyIdentification(final String partyName) {
         final PartyIdentification32 paryIdentification = new PartyIdentification32();
-        paryIdentification.setNm(partyName);
+        if (partyName != null && !partyName.isEmpty()) {
+            paryIdentification.setNm(partyName);
+        }
         return paryIdentification;
     }
 
