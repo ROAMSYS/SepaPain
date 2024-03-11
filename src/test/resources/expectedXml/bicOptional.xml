@@ -22,7 +22,9 @@
                 </SvcLvl>
             </PmtTpInf>
             <ReqdExctnDt>2023-11-15</ReqdExctnDt>
-            <Dbtr/>
+            <Dbtr>
+                <Nm>Roamsys S.A.</Nm>
+            </Dbtr>
             <DbtrAcct>
                 <Id>
                     <IBAN>DE02100100100006820101</IBAN>
@@ -30,7 +32,9 @@
             </DbtrAcct>
             <DbtrAgt>
                 <FinInstnId>
-                    <BIC>COBADEFFXXX</BIC>
+                    <Othr>
+                        <Id>NOTPROVIDED</Id>
+                    </Othr>
                 </FinInstnId>
             </DbtrAgt>
             <ChrgBr>SLEV</ChrgBr>
@@ -41,12 +45,9 @@
                 <Amt>
                     <InstdAmt Ccy="EUR">27.53</InstdAmt>
                 </Amt>
-                <CdtrAgt>
-                    <FinInstnId>
-                        <BIC>INGBNL2AXXX</BIC>
-                    </FinInstnId>
-                </CdtrAgt>
-                <Cdtr/>
+                <Cdtr>
+                    <Nm>John Doe</Nm>
+                </Cdtr>
                 <CdtrAcct>
                     <Id>
                         <IBAN>NL50INGB4362244417</IBAN>

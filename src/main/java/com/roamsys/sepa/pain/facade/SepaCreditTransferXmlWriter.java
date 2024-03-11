@@ -10,6 +10,7 @@ import com.roamsys.sepa.pain.jaxb.model.CreditTransferTransactionInformation10;
 import com.roamsys.sepa.pain.jaxb.model.CustomerCreditTransferInitiationV03;
 import com.roamsys.sepa.pain.jaxb.model.Document;
 import com.roamsys.sepa.pain.jaxb.model.FinancialInstitutionIdentification7;
+import com.roamsys.sepa.pain.jaxb.model.GenericFinancialIdentification1;
 import com.roamsys.sepa.pain.jaxb.model.GroupHeader32;
 import com.roamsys.sepa.pain.jaxb.model.ObjectFactory;
 import com.roamsys.sepa.pain.jaxb.model.PartyIdentification32;
@@ -33,6 +34,12 @@ import java.time.OffsetDateTime;
  * @author AndreasK
  */
 public class SepaCreditTransferXmlWriter {
+
+    /**
+     * A constant that may be used in some special cases according to the DFÜ agreement
+     * of the german banking industry committee, if no information is transferred.
+     */
+    private static final String NOT_PROVIDED = "NOTPROVIDED";
 
     private static final String EURO_CURRENCY = "EUR";
     private static final String SCHEMA_LOCATION = "urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001.03.xsd";
@@ -99,9 +106,7 @@ public class SepaCreditTransferXmlWriter {
 
     private PartyIdentification32 createPartyIdentification(final String partyName) {
         final PartyIdentification32 paryIdentification = new PartyIdentification32();
-        if (partyName != null && !partyName.isEmpty()) {
-            paryIdentification.setNm(partyName);
-        }
+        paryIdentification.setNm(partyName);
         return paryIdentification;
     }
 
@@ -129,10 +134,12 @@ public class SepaCreditTransferXmlWriter {
         final CreditTransferTransactionInformation10 transactionInfo = new CreditTransferTransactionInformation10();
 
         final PaymentIdentification1 value = new PaymentIdentification1();
-        value.setEndToEndId("NOTPROVIDED");
+        value.setEndToEndId(NOT_PROVIDED);
         transactionInfo.setPmtId(value);
         transactionInfo.setAmt(createAmount(data));
-        transactionInfo.setCdtrAgt(createFinancialInstitut(data.creditor().bic()));
+        if (data.creditor().bic() != null) {
+            transactionInfo.setCdtrAgt(createFinancialInstitut(data.creditor().bic()));
+        }
         transactionInfo.setCdtr(createPartyIdentification(data.creditor().owner()));
         transactionInfo.setCdtrAcct(createCashAccount(data.creditor().iban()));
         transactionInfo.setRmtInf(createRemittanceInfo(data.message()));
@@ -158,7 +165,13 @@ public class SepaCreditTransferXmlWriter {
     private BranchAndFinancialInstitutionIdentification4 createFinancialInstitut(final String bic) {
         final BranchAndFinancialInstitutionIdentification4 institut = new BranchAndFinancialInstitutionIdentification4();
         final FinancialInstitutionIdentification7 identification = new FinancialInstitutionIdentification7();
-        identification.setBIC(bic);
+        if (bic != null) {
+            identification.setBIC(bic);
+        } else {
+            final GenericFinancialIdentification1 other = new GenericFinancialIdentification1();
+            other.setId(NOT_PROVIDED);
+            identification.setOthr(other);
+        }
         institut.setFinInstnId(identification);
         return institut;
     }
