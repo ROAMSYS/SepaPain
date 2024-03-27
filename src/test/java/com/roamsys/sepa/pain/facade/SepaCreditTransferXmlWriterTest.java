@@ -35,13 +35,13 @@ class SepaCreditTransferXmlWriterTest {
     }
 
     @Test
-    void testAccountHolderOptional() throws IOException, URISyntaxException {
-        final var debtor = new SepaBankAccount(null, "COBADEFFXXX", "DE02100100100006820101");
-        final var creditor1 = new SepaBankAccount("", "INGBNL2AXXX", "NL50INGB4362244417");
+    void testBicOptional() throws IOException, URISyntaxException {
+        final var debtor = new SepaBankAccount("Roamsys S.A.", null, "DE02100100100006820101");
+        final var creditor1 = new SepaBankAccount("John Doe", null, "NL50INGB4362244417");
         final var paymentInstruction = new SepaPaymentInstruction("ABCDEFG", debtor, LocalDate.of(2023, 11, 15),
                 List.of(new SepaTransactionInfo(creditor1, new BigDecimal("27.53"), "Contract 1 - Nov 2023")));
         final var sepaCreditTransfer = new SepaCreditTransfer("COBADEFFXXX0020230716110719", "Roamsys S.A.", List.of(paymentInstruction));
-        assertXmlEquals("accountHolderOptional.xml", sepaCreditTransfer);
+        assertXmlEquals("bicOptional.xml", sepaCreditTransfer);
     }
 
     @Test
@@ -61,7 +61,8 @@ class SepaCreditTransferXmlWriterTest {
     private void assertXmlEquals(final String fileName, final SepaCreditTransfer sepaCreditTransfer) throws IOException, URISyntaxException {
         final StringWriter writer = new StringWriter();
         new SepaCreditTransferXmlWriter(clock).write(sepaCreditTransfer, writer);
-        final String expected = Files.readString(Paths.get(getClass().getClassLoader().getResource("expectedXml/" + fileName).toURI()));
+        String expected = Files.readString(Paths.get(getClass().getClassLoader().getResource("expectedXml/" + fileName).toURI()));
+        expected = expected.replaceAll("\r", "");
         assertEquals(expected, writer.toString());
     }
 }
