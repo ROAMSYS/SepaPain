@@ -2,3 +2,6 @@ target
 .settings
 .classpath
 .project
+
+# claude
+.claude/settings.local.json
