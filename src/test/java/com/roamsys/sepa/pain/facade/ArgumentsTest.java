@@ -60,6 +60,6 @@ class ArgumentsTest {
     @Test
     void testRequireMatches_InvalidRegex() {
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> Arguments.requireMatches("abc", "\\d+"));
-        assertEquals("'abc' does not matcht the expected pattern '\\d+'", exception.getMessage());
+        assertEquals("'abc' does not match the expected pattern '\\d+'", exception.getMessage());
     }
 }
