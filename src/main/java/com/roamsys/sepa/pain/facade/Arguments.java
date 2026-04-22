@@ -28,7 +28,7 @@ class Arguments {
 
     static void requireMatches(final String value, final String regex) {
         if (!value.matches(regex)) {
-            throw new IllegalArgumentException(String.format("'%s' does not matcht the expected pattern '%s'", value, regex));
+            throw new IllegalArgumentException(String.format("'%s' does not match the expected pattern '%s'", value, regex));
         }
     }
 }
