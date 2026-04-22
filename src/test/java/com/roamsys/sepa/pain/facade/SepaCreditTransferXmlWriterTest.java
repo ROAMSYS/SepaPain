@@ -29,7 +29,7 @@ class SepaCreditTransferXmlWriterTest {
         final var paymentInstruction = new SepaPaymentInstruction("ABCDEFG", debtor, LocalDate.of(2023, 11, 15),
                 List.of(new SepaTransactionInfo(creditor1, new BigDecimal("27.53"), "Contract 1 - Nov 2023"),
                         new SepaTransactionInfo(creditor2, new BigDecimal("82.6"), "Contract 2 - Nov 2023"),
-                        new SepaTransactionInfo(creditor3, new BigDecimal("27.53"), "Contract 3 - Nov 2023")));
+                        new SepaTransactionInfo(creditor3, new BigDecimal("27.53"), "Contract 3 - Nov 2023")), false);
         final var sepaCreditTransfer = new SepaCreditTransfer("COBADEFFXXX0020230716110719", "Roamsys S.A.", List.of(paymentInstruction));
         assertXmlEquals("oneInstructionManyTransactions.xml", sepaCreditTransfer);
     }
@@ -39,7 +39,7 @@ class SepaCreditTransferXmlWriterTest {
         final var debtor = new SepaBankAccount("Roamsys S.A.", null, "DE02100100100006820101");
         final var creditor1 = new SepaBankAccount("John Doe", null, "NL50INGB4362244417");
         final var paymentInstruction = new SepaPaymentInstruction("ABCDEFG", debtor, LocalDate.of(2023, 11, 15),
-                List.of(new SepaTransactionInfo(creditor1, new BigDecimal("27.53"), "Contract 1 - Nov 2023")));
+                List.of(new SepaTransactionInfo(creditor1, new BigDecimal("27.53"), "Contract 1 - Nov 2023")), true);
         final var sepaCreditTransfer = new SepaCreditTransfer("COBADEFFXXX0020230716110719", "Roamsys S.A.", List.of(paymentInstruction));
         assertXmlEquals("bicOptional.xml", sepaCreditTransfer);
     }
@@ -49,11 +49,11 @@ class SepaCreditTransferXmlWriterTest {
         final var debtor = new SepaBankAccount("Roamsys S.A.", "COBADEFFXXX", "DE02100100100006820101");
         final var creditor = new SepaBankAccount("John Doe", "INGBNL2AXXX", "NL50INGB4362244417");
         final var instruction1 = new SepaPaymentInstruction("ABCDEFG", debtor, LocalDate.of(2023, 11, 15),
-                List.of(new SepaTransactionInfo(creditor, new BigDecimal("27.53"), "Nov 2023")));
+                List.of(new SepaTransactionInfo(creditor, new BigDecimal("27.53"), "Nov 2023")), true);
         final var instruction2 = new SepaPaymentInstruction("12345678", debtor, LocalDate.of(2023, 12, 15),
-                List.of(new SepaTransactionInfo(creditor, new BigDecimal("27.53"), "Dec 2023")));
+                List.of(new SepaTransactionInfo(creditor, new BigDecimal("27.53"), "Dec 2023")), true);
         final var instruction3 = new SepaPaymentInstruction("12345678", debtor, LocalDate.of(2024, 1, 15),
-                List.of(new SepaTransactionInfo(creditor, new BigDecimal("27.53"), "Jan 2024")));
+                List.of(new SepaTransactionInfo(creditor, new BigDecimal("27.53"), "Jan 2024")), true);
         final var sepaCreditTransfer = new SepaCreditTransfer("COBADEFFXXX0020230716110719", "Company 1 S.A.", List.of(instruction1, instruction2, instruction3));
         assertXmlEquals("manyInstructions.xml", sepaCreditTransfer);
     }
