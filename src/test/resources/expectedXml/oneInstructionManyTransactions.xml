@@ -13,7 +13,7 @@
         <PmtInf>
             <PmtInfId>ABCDEFG</PmtInfId>
             <PmtMtd>TRF</PmtMtd>
-            <BtchBookg>true</BtchBookg>
+            <BtchBookg>false</BtchBookg>
             <NbOfTxs>3</NbOfTxs>
             <CtrlSum>137.66</CtrlSum>
             <PmtTpInf>
