@@ -114,7 +114,7 @@ public class SepaCreditTransferXmlWriter {
         final PaymentInstructionInformation3 payment = new PaymentInstructionInformation3();
         payment.setPmtInfId(data.reference());
         payment.setPmtMtd(PaymentMethod3Code.TRF);
-        payment.setBtchBookg(true);
+        payment.setBtchBookg(data.batchBooking());
         payment.setNbOfTxs(Integer.toString(data.transactions().size()));
         payment.setCtrlSum(data.getTransactionAmountSum());
         payment.setPmtTpInf(createPaymentTypeInfo());
