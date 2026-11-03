@@ -13,20 +13,39 @@ import org.junit.jupiter.api.Test;
 class ArgumentsTest {
 
     @Test
-    void testRequireNotNegative_PositiveValue() {
-        assertDoesNotThrow(() -> Arguments.requireNotNegative(BigDecimal.ONE));
+    void testRequireBetween_ValueInRange() {
+        assertDoesNotThrow(() -> Arguments.requireBetween(BigDecimal.ONE, BigDecimal.ZERO, BigDecimal.TEN));
     }
 
     @Test
-    void testRequireNotNegative_ZeroValue() {
-        assertDoesNotThrow(() -> Arguments.requireNotNegative(BigDecimal.ZERO));
+    void testRequireBetween_ValueEqualsBounds() {
+        assertDoesNotThrow(() -> Arguments.requireBetween(BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.TEN));
+        assertDoesNotThrow(() -> Arguments.requireBetween(BigDecimal.TEN, BigDecimal.ZERO, BigDecimal.TEN));
     }
 
     @Test
-    void testRequireNotNegative_NegativeValue() {
+    void testRequireBetween_ValueTooSmall() {
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
-                () -> Arguments.requireNotNegative(BigDecimal.ONE.negate()));
-        assertEquals("The value must not be negative", exception.getMessage());
+                () -> Arguments.requireBetween(new BigDecimal("0.00"), new BigDecimal("0.01"), BigDecimal.TEN));
+        assertEquals("The value must be between 0.01 and 10", exception.getMessage());
+    }
+
+    @Test
+    void testRequireBetween_ValueTooLarge() {
+        assertThrows(IllegalArgumentException.class, () -> Arguments.requireBetween(new BigDecimal("10.01"), BigDecimal.ZERO, BigDecimal.TEN));
+    }
+
+    @Test
+    void testRequireMaxFractionDigits_ValidValue() {
+        assertDoesNotThrow(() -> Arguments.requireMaxFractionDigits(new BigDecimal("1.23"), 2));
+        assertDoesNotThrow(() -> Arguments.requireMaxFractionDigits(new BigDecimal("1.2300"), 2));
+    }
+
+    @Test
+    void testRequireMaxFractionDigits_TooManyFractionDigits() {
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> Arguments.requireMaxFractionDigits(new BigDecimal("1.234"), 2));
+        assertEquals("The value must not have more than 2 fraction digits", exception.getMessage());
     }
 
     @Test

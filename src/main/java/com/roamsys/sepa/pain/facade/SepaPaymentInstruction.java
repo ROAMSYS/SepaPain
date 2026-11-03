@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * Information about a SEPA payment instruction.
  *
- * @param reference unique reference for the payment (1-35 characters)
+ * @param reference unique reference for the payment (1-35 characters, see {@link SepaBankAccount#SEPA_ID_REGEX})
  * @param debtor the debtor account
  * @param requestedExecutionDate the requested execution date
  * @param transactions the transaction list
@@ -17,7 +17,7 @@ import java.util.Objects;
  */
 public record SepaPaymentInstruction(String reference, SepaBankAccount debtor, LocalDate requestedExecutionDate, List<SepaTransactionInfo> transactions, boolean batchBooking) {
     public SepaPaymentInstruction {
-        Arguments.requireLength(reference, 1, 35);
+        Arguments.requireMatches(reference, SepaBankAccount.SEPA_ID_REGEX);
         Objects.requireNonNull(debtor);
         Objects.requireNonNull(requestedExecutionDate);
         Arguments.requireNotEmpty(transactions);
