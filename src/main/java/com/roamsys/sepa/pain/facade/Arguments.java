@@ -8,9 +8,15 @@ import java.util.Collection;
  */
 class Arguments {
 
-    static void requireNotNegative(final BigDecimal value) {
-        if (value.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("The value must not be negative");
+    static void requireBetween(final BigDecimal value, final BigDecimal min, final BigDecimal max) {
+        if (value.compareTo(min) < 0 || value.compareTo(max) > 0) {
+            throw new IllegalArgumentException(String.format("The value must be between %s and %s", min.toPlainString(), max.toPlainString()));
+        }
+    }
+
+    static void requireMaxFractionDigits(final BigDecimal value, final int maxFractionDigits) {
+        if (value.stripTrailingZeros().scale() > maxFractionDigits) {
+            throw new IllegalArgumentException(String.format("The value must not have more than %d fraction digits", maxFractionDigits));
         }
     }
 

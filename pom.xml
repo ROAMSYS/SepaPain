@@ -6,7 +6,7 @@
     <artifactId>sepa-pain</artifactId>
     <packaging>jar</packaging>
     <name>SepaPain</name>
-    <version>2.1.0-SNAPSHOT</version>
+    <version>3.0.0-SNAPSHOT</version>
     <organization>
         <name>ROAMSYS S.A.</name>
         <url>https://roamsys-next.com</url>
@@ -43,6 +43,12 @@
             <version>5.10.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.10.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -76,7 +82,7 @@
                         <xjbSource>src/main/resources/xjb/global.xjb</xjbSource>
                     </xjbSources>
                     <sources>
-                        <source>src/main/resources/xsd/pain.001.001.03.xsd</source>
+                        <source>src/main/resources/xsd/pain.001.001.09_GBIC_5.xsd</source>
                     </sources>
                     <packageName>com.roamsys.sepa.pain.jaxb.model</packageName>
                     <clearOutputDir>false</clearOutputDir>

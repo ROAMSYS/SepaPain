@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Document xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001.03.xsd" xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Document xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:pain.001.001.09 pain.001.001.09.xsd" xmlns="urn:iso:std:iso:20022:tech:xsd:pain.001.001.09" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <CstmrCdtTrfInitn>
         <GrpHdr>
             <MsgId>COBADEFFXXX0020230716110719</MsgId>
@@ -21,7 +21,9 @@
                     <Cd>SEPA</Cd>
                 </SvcLvl>
             </PmtTpInf>
-            <ReqdExctnDt>2023-11-15</ReqdExctnDt>
+            <ReqdExctnDt>
+                <Dt>2023-11-15</Dt>
+            </ReqdExctnDt>
             <Dbtr>
                 <Nm>Roamsys S.A.</Nm>
             </Dbtr>
@@ -32,7 +34,7 @@
             </DbtrAcct>
             <DbtrAgt>
                 <FinInstnId>
-                    <BIC>COBADEFFXXX</BIC>
+                    <BICFI>COBADEFFXXX</BICFI>
                 </FinInstnId>
             </DbtrAgt>
             <ChrgBr>SLEV</ChrgBr>
@@ -45,7 +47,7 @@
                 </Amt>
                 <CdtrAgt>
                     <FinInstnId>
-                        <BIC>INGBNL2AXXX</BIC>
+                        <BICFI>INGBNL2AXXX</BICFI>
                     </FinInstnId>
                 </CdtrAgt>
                 <Cdtr>
@@ -69,7 +71,7 @@
                 </Amt>
                 <CdtrAgt>
                     <FinInstnId>
-                        <BIC>FOTNLULLXXX</BIC>
+                        <BICFI>FOTNLULLXXX</BICFI>
                     </FinInstnId>
                 </CdtrAgt>
                 <Cdtr>
@@ -93,7 +95,7 @@
                 </Amt>
                 <CdtrAgt>
                     <FinInstnId>
-                        <BIC>FOTNLULLXXX</BIC>
+                        <BICFI>FOTNLULLXXX</BICFI>
                     </FinInstnId>
                 </CdtrAgt>
                 <Cdtr>
